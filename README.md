@@ -19,6 +19,9 @@ docker run --rm --name ssm_restart_agent -p 9009:9009 klevo/ssm_restart_agent
 
 # Sending a message (locally)
 echo "restart_ssm_agent" | nc localhost 9009
+
+# Sending with timeout
+echo "restart_ssm_agent" | nc -w 3 localhost 9009 &> /dev/null
 ```
 
 ## Installing on Linux instance
