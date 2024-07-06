@@ -15,7 +15,7 @@ const (
 )
 
 func restartService() {
-	cmd := exec.Command("sudo", "systemctl", "restart", "--no-block", SERVICE_NAME)
+	cmd := exec.Command("systemctl", "restart", "--no-block", SERVICE_NAME)
 	err := cmd.Run()
 	if err != nil {
 		fmt.Printf("Failed to restart service %s: %v\n", SERVICE_NAME, err)
