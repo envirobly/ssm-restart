@@ -7,7 +7,7 @@ Simple agent to listen on a TCP port an accept pre-defined command to restart am
 ```sh
 docker build --output=dist --target=binaries .
 
-ls /dist
+ls dist
 ```
 
 ## Building and running in docker (for testing)
