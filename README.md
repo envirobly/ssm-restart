@@ -15,9 +15,9 @@ ls dist
 ## Building and running in docker (for testing)
 
 ```sh
-docker build -t klevo/ssm_restart_agent .
+docker build -t klevo/ssm_restart_agent:latest .
 
-docker run --rm --name ssm_restart_agent -p 9009:9009 klevo/ssm_restart_agent
+docker run -it --rm --name ssm_restart_agent -p 9009:9009 klevo/ssm_restart_agent:latest ./ssm_restart_agent --listen-address :9009
 
 # Sending a message (locally)
 echo "restart_ssm_agent" | nc localhost 9009
@@ -29,7 +29,7 @@ echo "restart_ssm_agent" | nc -w 3 localhost 9009 &> /dev/null
 ## Installing on Linux instance
 
 ```sh
-wget https://github.com/envirobly/ssm-restart/releases/download/v0.1/ssm_restart_agent
+wget https://github.com/envirobly/ssm-restart/releases/download/v1.1/ssm_restart_agent
 chmod +x ssm_restart_agent
 ./ssm_restart_agent
 ```

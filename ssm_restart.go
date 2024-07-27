@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"bufio"
 	"fmt"
 	"net"
@@ -9,7 +10,6 @@ import (
 )
 
 const (
-	PORT           = ":9009" // Port to listen on
 	SECRET_MESSAGE = "restart_ssm_agent"
 	SERVICE_NAME   = "amazon-ssm-agent"
 )
@@ -42,13 +42,16 @@ func handleConnection(conn net.Conn) {
 }
 
 func main() {
-	listener, err := net.Listen("tcp", PORT)
+	listenAddress := flag.String("listen-address", ":63104", "Address and port to listen on (e.g., :63104 or 0.0.0.0:63104)")
+	flag.Parse()
+
+	listener, err := net.Listen("tcp", *listenAddress)
 	if err != nil {
 		fmt.Printf("Error starting server: %v\n", err)
 		return
 	}
 	defer listener.Close()
-	fmt.Printf("Listening on %s\n", PORT)
+	fmt.Printf("Listening on %s\n", *listenAddress)
 
 	for {
 		conn, err := listener.Accept()
