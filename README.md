@@ -15,9 +15,13 @@ ls dist
 ## Building and running in docker (for testing)
 
 ```sh
-docker build -t klevo/ssm_restart_agent:latest .
+docker build -t klevo/ssm_restart_agent .
 
-docker run -it --rm --name ssm_restart_agent -p 9009:9009 klevo/ssm_restart_agent:latest ./ssm_restart_agent --listen-address :9009
+# Changing the default port:
+docker run -it --rm --name ssm_restart_agent -p 9009:9009 klevo/ssm_restart_agent ./ssm_restart_agent --listen-address :9009
+
+# Running with host networking with the default port:
+docker run -it --rm --name ssm_restart_agent --network host klevo/ssm_restart_agent
 
 # Sending a message (locally)
 echo "restart_ssm_agent" | nc localhost 9009

@@ -9,6 +9,6 @@ COPY --from=builder /build/ssm_restart_agent /
 FROM alpine:latest
 WORKDIR /root/
 COPY --from=builder /build/ssm_restart_agent .
-EXPOSE 9009
+EXPOSE 63104
 CMD ["./ssm_restart_agent"]
 
